@@ -56,7 +56,7 @@ public class GUIManager implements Listener {
 				player.closeInventory();
 				for (String msg : Message.CLICKPOSTICON.getStringList()) {
 					String url = "https://www.mcbbs.net/thread-" + Option.MCBBS_URL.getString() + "-1-1.html";
-					player.sendMessage(msg.replaceAll("%PAGE%", url));
+					player.sendMessage(Message.PREFIX.getString() + msg.replaceAll("%PAGE%", url));
 				}
 			}
 		}

@@ -51,14 +51,11 @@ public class GUI {
 		for (int i = 0; i < inv.getSize(); i++) {// 设置边框
 			if (i > 9 && i < 17)
 				continue;
-			inv.setItem(i, getRandomPane());
+			inv.setItem(i, new ItemStack(Material.GRAY_STAINED_GLASS_PANE));
 		}
 		ItemStack skull;
-		try {
-			skull = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
-		} catch (NoSuchFieldError e) {// 某些高版本服务端不兼容旧版写法
-			skull = new ItemStack(Material.getMaterial("PLAYER_HEAD"), 1);
-		}
+		skull = new ItemStack(Material.PLAYER_HEAD, 1, (short) SkullType.PLAYER.ordinal());
+
 		SkullMeta skullmeta = (SkullMeta) skull.getItemMeta();// 玩家头颅
 		if (Option.GUI_DISPLAYHEADSKIN.getBoolean()) {// 如果开启了头颅显示，才会设置头颅的所有者
 			try {
@@ -82,11 +79,8 @@ public class GUI {
 		skull.setItemMeta(skullmeta);
 		inv.setItem(12, skull);
 		ItemStack sunflower;
-		try {
-			sunflower = new ItemStack(Material.DOUBLE_PLANT);
-		} catch (NoSuchFieldError e) {// 某些高版本服务端不兼容旧版写法
-			sunflower = new ItemStack(Material.getMaterial("SUNFLOWER"));
-		}
+		sunflower = new ItemStack(Material.SUNFLOWER);
+
 		ItemMeta sunflowermeta = sunflower.getItemMeta();
 		sunflowermeta.setDisplayName(Message.GUI_REWARDS.getString());
 		List<String> sunflowerlores = new ArrayList<String>(Message.GUI_REWARDSINFO.getStringList());// 自定义奖励信息
@@ -144,29 +138,6 @@ public class GUI {
 		compassmeta.setLore(compasslores);
 		compass.setItemMeta(compassmeta);
 		inv.setItem(22, compass);
-	}
-	
-	public ItemStack getRandomPane() {// 获取随机一种颜色的玻璃板
-		short data = (short)(Math.random()* 16);// 这会随机取出0-15的数据值
-		while (data == 8) {// 8号亮灰色染色玻璃板根本没有颜色
-			data = (short)(Math.random()* 16);
-		}
-		ItemStack frame;
-		try {
-			frame = new ItemStack(Material.STAINED_GLASS_PANE, 1, data);
-
-		} catch (NoSuchFieldError e) {// 某些高版本服务端不兼容旧版写法
-			String[] glasspanes = {"WHITE_STAINED_GLASS_PANE", "ORANGE_STAINED_GLASS_PANE", "MAGENTA_STAINED_GLASS_PANE",
-			"LIGHT_BLUE_STAINED_GLASS_PANE", "YELLOW_STAINED_GLASS_PANE", "LIME_STAINED_GLASS_PANE", "PINK_STAINED_GLASS_PANE",
-			"GRAY_STAINED_GLASS_PANE", "LIGHT_GRAY_STAINED_GLASS_PANE", "CYAN_STAINED_GLASS_PANE", "PURPLE_STAINED_GLASS_PANE",
-			"BLUE_STAINED_GLASS_PANE", "BROWN_STAINED_GLASS_PANE", "GREEN_STAINED_GLASS_PANE", "RED_STAINED_GLASS_PANE",
-			"BLACK_STAINED_GLASS_PANE"};
-			frame = new ItemStack(Material.getMaterial(glasspanes[data]), 1);
-		}
-		ItemMeta framemeta = frame.getItemMeta();
-		framemeta.setDisplayName(Message.GUI_FRAME.getString());
-		frame.setItemMeta(framemeta);
-		return frame;
 	}
 
 	public Inventory getGui() {

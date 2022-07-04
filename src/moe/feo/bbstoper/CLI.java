@@ -136,8 +136,8 @@ public class CLI implements TabExecutor {
 				}
 				case "binding": {
 					if (!(sender instanceof Player)) {
-						sender.sendMessage(Message.PLAYERCMD.getString());
-						sender.sendMessage(Message.HELP_HELP.getString());
+						sender.sendMessage(Message.PREFIX.getString() + Message.PLAYERCMD.getString());
+						sender.sendMessage(Message.PREFIX.getString() + Message.HELP_HELP.getString());
 						return;
 					}
 					if (!(sender.hasPermission("bbstoper.binding"))) {
@@ -207,8 +207,8 @@ public class CLI implements TabExecutor {
 				}
 				case "reward": {
 					if (!(sender instanceof Player)) {
-						sender.sendMessage(Message.PLAYERCMD.getString());
-						sender.sendMessage(Message.HELP_HELP.getString());
+						sender.sendMessage(Message.PREFIX.getString() + Message.PLAYERCMD.getString());
+						sender.sendMessage(Message.PREFIX.getString() + Message.HELP_HELP.getString());
 						return;
 					}
 					if (!sender.hasPermission("bbstoper.reward")) {
@@ -281,7 +281,7 @@ public class CLI implements TabExecutor {
 						for (Player p :Bukkit.getOnlinePlayers()) {// 给有奖励权限且能看见此玩家(防止Vanish)的玩家广播
 							if (!p.canSee((Player)sender)) continue;
 							if (!p.hasPermission("bbstoper.reward")) continue;
-							p.sendMessage(Message.BROADCAST.getString().replaceAll("%PLAYER%", player.getName()));
+							p.sendMessage(Message.PREFIX.getString() + Message.BROADCAST.getString().replaceAll("%PLAYER%", player.getName()));
 						}
 					}
 					if (isovertime) {
@@ -301,8 +301,8 @@ public class CLI implements TabExecutor {
 
 				case "testreward": {
 					if (!(sender instanceof Player)) {
-						sender.sendMessage(Message.PLAYERCMD.getString());
-						sender.sendMessage(Message.HELP_HELP.getString());
+						sender.sendMessage(Message.PREFIX.getString() + Message.PLAYERCMD.getString());
+						sender.sendMessage(Message.PREFIX.getString() + Message.HELP_HELP.getString());
 						return;
 					}
 					if (!sender.hasPermission("bbstoper.testreward")) {
@@ -357,7 +357,7 @@ public class CLI implements TabExecutor {
 						try {
 							page = Integer.parseInt(args[1]);
 						} catch (NumberFormatException e) {
-							sender.sendMessage(Message.INVALIDNUM.getString());
+							sender.sendMessage(Message.PREFIX.getString() + Message.INVALIDNUM.getString());
 							return;
 						}
 
@@ -396,7 +396,7 @@ public class CLI implements TabExecutor {
 					pageinfo = pageinfo.replaceAll("%TOTALPAGE%", Integer.toString(totalpage));
 					msglist.add(Message.PREFIX.getString() + pageinfo);
 					for (int i = 0; i < msglist.size(); i++) {
-						sender.sendMessage(msglist.get(i));
+						sender.sendMessage(Message.PREFIX.getString() + msglist.get(i));
 					}
 					break;
 				}
@@ -427,7 +427,7 @@ public class CLI implements TabExecutor {
 						try {
 							page = Integer.parseInt(args[1]);
 						} catch (NumberFormatException e) {
-							sender.sendMessage(Message.INVALIDNUM.getString());
+							sender.sendMessage(Message.PREFIX.getString() + Message.INVALIDNUM.getString());
 							return;
 						}
 					} else if (args.length > 2) {
@@ -460,7 +460,7 @@ public class CLI implements TabExecutor {
 					pageinfo = pageinfo.replaceAll("%TOTALPAGE%", Integer.toString(totalpage));
 					msglist.add(Message.PREFIX.getString() + pageinfo);
 					for (int i = 0; i < msglist.size(); i++) {
-						sender.sendMessage(msglist.get(i));
+						sender.sendMessage(Message.PREFIX.getString() + msglist.get(i));
 					}
 					break;
 				}
@@ -511,7 +511,7 @@ public class CLI implements TabExecutor {
 							return;
 						}
 						String mcbbsname = poster.getBbsname();
-						sender.sendMessage(
+						sender.sendMessage(Message.PREFIX.getString() + 
 								Message.PREFIX.getString() + Message.OWNERID.getString().replaceAll("%ID%", mcbbsname));
 						return;
 					}

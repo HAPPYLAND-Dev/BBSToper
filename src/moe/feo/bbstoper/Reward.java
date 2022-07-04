@@ -186,10 +186,10 @@ public class Reward {
 			}
 		});
 		// 给玩家发个消息表示祝贺
-		player.sendMessage(
+		player.sendMessage(Message.PREFIX.getString() + 
 				Message.PREFIX.getString() + Message.REWARD.getString().replaceAll("%TIME%", crawler.Time.get(index)));
 		if (extra != null) {
-			player.sendMessage(
+			player.sendMessage(Message.PREFIX.getString() + 
 					Message.PREFIX.getString() + Message.EXTRAREWARD.getString().replaceAll("%EXTRA%", extra));
 		}
 	}

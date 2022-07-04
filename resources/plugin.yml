@@ -2,6 +2,7 @@ name: BBSToper
 main: moe.feo.bbstoper.BBSToper
 version: 3.6.7
 author: Fengshuai(R_Josef)
+api-version: 1.18
 website: https://www.mcbbs.net/thread-789082-1-1.html
 softdepend: [PlaceholderAPI]
 commands:
